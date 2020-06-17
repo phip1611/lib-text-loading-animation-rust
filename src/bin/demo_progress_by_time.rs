@@ -18,7 +18,6 @@ fn main() {
             percent as usize
         }
     };
-    let long_running_task = Box::from(long_running_task);
 
-    show_loading_animation(150, 1003, long_running_task)
+    show_loading_animation(150, 1003, &long_running_task)
 }

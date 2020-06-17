@@ -25,9 +25,8 @@ fn main() {
         let progress = progress.lock().unwrap();
         *progress
     };
-    let get_progress_fn = Box::from(get_progress_fn);
 
-    show_loading_animation(0, 100, get_progress_fn);
+    show_loading_animation(0, 100, &get_progress_fn);
 
     // gracefully shut down thread; even tho it should be dead by know
     h.join().unwrap();

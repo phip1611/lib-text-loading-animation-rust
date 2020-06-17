@@ -11,7 +11,7 @@ static ANIMATION_STATES: [char; 4] = ['—', '\\', '|', '/'];
 /// One need to provide a function that returns the progress in percent at any given time.
 pub fn show_loading_animation(from: usize,
                               to: usize,
-                              progress_in_percentage_fn: Box<dyn Fn() -> usize>) {
+                              progress_in_percentage_fn: &dyn Fn() -> usize) {
     if to < from { panic!("to < from") }
 
     let mut animation_step = 0;
