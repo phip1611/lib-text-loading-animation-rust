@@ -3,6 +3,7 @@ name = "text-loading-animation"
 version = "1.0.0"
 authors = ["Philipp Schuster <phip1611@gmail.com>"]
 edition = "2018"
+crate-type = ["cdylib", "rlib"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
