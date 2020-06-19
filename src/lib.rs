@@ -46,6 +46,19 @@ pub fn show_loading_animation(from: usize,
     }
 }
 
+
+/// Like show_loading_animation() but callable from C.
+#[no_mangle]
+pub fn show_loading_animation_ffi(from: usize,
+                                  to: usize,
+                                  progress_in_percentage_fn: extern "C" fn() -> usize) {
+    let fn_flosure = || {
+        progress_in_percentage_fn()
+    };
+    show_loading_animation(from, to, &fn_flosure);
+}
+
+
 /// Calculates the progress from the given percentage.
 fn calc_progress(from: usize, to: usize, percent: usize) -> usize {
     let normalized = (to - from) as f64;
