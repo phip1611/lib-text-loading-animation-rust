@@ -49,9 +49,10 @@ pub fn show_loading_animation(from: usize,
 
 /// Like show_loading_animation() but callable from C.
 #[no_mangle]
-pub fn show_loading_animation_ffi(from: usize,
-                                  to: usize,
-                                  progress_in_percentage_fn: extern "C" fn() -> usize) {
+// pub not necessary here; this way this symbol is not visible to Rust but only to C
+fn show_loading_animation_ffi(from: usize,
+                              to: usize,
+                              progress_in_percentage_fn: extern "C" fn() -> usize) {
     let fn_flosure = || {
         progress_in_percentage_fn()
     };
@@ -63,7 +64,7 @@ pub fn show_loading_animation_ffi(from: usize,
 fn calc_progress(from: usize, to: usize, percent: usize) -> usize {
     let normalized = (to - from) as f64;
     let progress = (percent as f64) / 100_f64;
-    let progress = (progress * normalized) as usize ;
+    let progress = (progress * normalized) as usize;
     let progress = progress + from;
     progress
 }
