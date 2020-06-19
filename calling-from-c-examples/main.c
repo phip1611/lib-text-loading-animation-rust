@@ -26,5 +26,7 @@ int main(void) {
     // start thread
     pthread_create(&t1, NULL, progress_maker, NULL);
     show_loading_animation_ffi(0, 100, progress_reporter);
+    // Overwrite last written line from loading animation
+    printf("\rdone :)                            \n");
     return 0;
 }

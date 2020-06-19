@@ -30,4 +30,7 @@ fn main() {
 
     // gracefully shut down thread; even tho it should be dead by know
     h.join().unwrap();
+
+    // Overwrite last written line from loading animation
+    println!("\rdone :)                     ");
 }
