@@ -8,7 +8,7 @@ main: main.c | $(RUST_LIB)
 	# file is called "libtext_loading_animation.so"
 	# it's important that the library (-l) comes after the c file!!
 	# see: https://stackoverflow.com/a/12748882/2891595
-	gcc -Wall -Werror -ggdb -L$(RUST_LIB_DIR) -o $@ $< -l$(RUST_LIB_NAME)
+	gcc -Wall -Werror -ggdb -L$(RUST_LIB_DIR) -o $@ $< -l$(RUST_LIB_NAME) -lpthread
 
 $(RUST_LIB):
 	cd ..
