@@ -12,7 +12,6 @@ static ANIMATION_STATES: [char; 4] = ['—', '\\', '|', '/'];
 /// percent. They describe to problem range, e.g. copy files 1000 to 2000.
 ///
 /// One must provide a function that returns the progress in percent at any given time.
-#[no_mangle]
 pub fn show_loading_animation(from: usize,
                               to: usize,
                               progress_in_percentage_fn: &dyn Fn() -> usize) {
@@ -46,6 +45,19 @@ pub fn show_loading_animation(from: usize,
         sleep(Duration::from_millis(ANIMATION_SLEEP_TIMEOUT));
     }
 }
+
+
+/// Like show_loading_animation() but callable from C.
+#[no_mangle]
+pub fn show_loading_animation_ffi(from: usize,
+                                  to: usize,
+                                  progress_in_percentage_fn: extern "C" fn() -> usize) {
+    let fn_flosure = || {
+        progress_in_percentage_fn()
+    };
+    show_loading_animation(from, to, &fn_flosure);
+}
+
 
 /// Calculates the progress from the given percentage.
 fn calc_progress(from: usize, to: usize, percent: usize) -> usize {

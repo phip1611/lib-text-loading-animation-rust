@@ -1,15 +1,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-// 64 bit
-typedef long long usize;
-extern void show_loading_animation(usize, usize, usize (*prog_fn)());
+typedef unsigned long long usize; // 64 bit
+extern void show_loading_animation_ffi(usize, usize, usize (*prog_fn)());
 
 usize progress_reporter() {
-    return 80l;
+    return (usize) 80;
 }
 
 int main(void) {
-    show_loading_animation(0, 100, &progress_reporter);
+    show_loading_animation_ffi(0, 100, progress_reporter);
     return 0;
 }
