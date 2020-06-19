@@ -1,4 +1,4 @@
-use text_loading_animation::show_loading_animation;
+use text_loading_animation::{show_loading_animation, Destination};
 use std::time::{Duration};
 use std::sync::{Mutex, Arc};
 use std::thread::{spawn, sleep};
@@ -26,7 +26,7 @@ fn main() {
         *progress
     };
 
-    show_loading_animation(0, 100, &get_progress_fn);
+    show_loading_animation(0, 100, Destination::STDOUT, &get_progress_fn);
 
     // gracefully shut down thread; even tho it should be dead by know
     h.join().unwrap();

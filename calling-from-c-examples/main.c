@@ -3,14 +3,18 @@
 #include <pthread.h>
 #include <unistd.h> // usleep
 
-typedef unsigned long long usize; // 64 bit
-extern void show_loading_animation_ffi(usize, usize, usize (*prog_fn)());
+/**
+ * The target stream.
+ */
+enum target { TARGET_STDOUT, TARGET_STDERR };
+typedef unsigned long long usize_t; // 64 bit / usize on 64 bit machine
+extern void show_loading_animation_ffi(usize_t, usize_t, int, usize_t (*prog_fn)());
 
 // shared global var
-usize counter;
+usize_t counter;
 
 // function that tells the lib how many percent progress we made so far
-usize progress_reporter() { return counter; }
+usize_t progress_reporter() { return counter; }
 
 // function where our worker thread makes progress
 void * progress_maker() {
@@ -25,7 +29,7 @@ int main(void) {
     pthread_t t1;
     // start thread
     pthread_create(&t1, NULL, progress_maker, NULL);
-    show_loading_animation_ffi(0, 100, progress_reporter);
+    show_loading_animation_ffi(0, 100, TARGET_STDERR, progress_reporter);
     // Overwrite last written line from loading animation
     printf("\rdone :)                            \n");
     return 0;
