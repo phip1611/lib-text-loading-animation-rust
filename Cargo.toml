@@ -3,6 +3,14 @@ name = "text-loading-animation"
 version = "1.0.0"
 authors = ["Philipp Schuster <phip1611@gmail.com>"]
 edition = "2018"
+license = "MIT"
+keywords = ["loading", "animation", "stdout", "terminal", "cli"]
+categories = ["command-line-interface" ]
+description = "This crate/lib helps you to print loading animations easily on STDOUT/STDERR when developing CLIs for example."
+readme = "readme.md"
+homepage = "https://github.com/phip1611/lib-text-loading-animation-rust"
+repository = "https://github.com/phip1611/lib-text-loading-animation-rust"
+documentation = "https://docs.rs/text-loading-animation/"
 
 [lib]
 # build regular rust lib + shared object to use from c
