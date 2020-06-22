@@ -1,6 +1,7 @@
 use text_loading_animation::{show_loading_animation, Destination};
 use std::time::{Instant, Duration};
 use std::ops::Add;
+use text_loading_animation::ProgressFnKind::PERCENT;
 
 fn main() {
     let begin = Instant::now();
@@ -19,7 +20,7 @@ fn main() {
         }
     };
 
-    show_loading_animation(150, 1003, Destination::STDOUT, &long_running_task);
+    show_loading_animation(150, 1003, Destination::STDOUT, &long_running_task, PERCENT);
 
     // Overwrite last written line from loading animation
     println!("\rdone :)                     ");
