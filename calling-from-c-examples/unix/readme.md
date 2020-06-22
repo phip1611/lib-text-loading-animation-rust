@@ -1,4 +1,4 @@
-# Calling library *text-loading-animation* from C.
+# Calling library *text-loading-animation* from C on UNIX.
 
 ## Prerequisites
 - this special setup (make, gcc) works only on UNIX-like systems (MacOS, Linux)

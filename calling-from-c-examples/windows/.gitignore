@@ -1,0 +1,6 @@
+main.exe
+main.obj
+cmake-build-debug
+*.dll
+*.dll.lib
+deps
