@@ -3,8 +3,12 @@ project("CLion/CMake example to call Rust lib on Windows" C)
 
 set(CMAKE_C_STANDARD 11)
 
-# note that this only works if the DLL-file is manually copied into the cmake output directory or CLION knows
-# the location of the DLL some other way...
+# THIS PROBABLY NOT WORK IN CLION AND I DON'T KNOW WHY
+# CLION USES THE MSVC TOOLCHAIN FROM
+# C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.28.29333\bin\Hostx86
+# INSTEAD OF ..bin\Hostx64
+# BUT BECAUSE CARGO BUILDS AN X64-LIB THE LINKING FAILS... but this works on command line :)
+
 add_executable(main main.c)
 
 # trigger cargo build so that *.dll is generated
